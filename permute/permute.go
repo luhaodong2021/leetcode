@@ -7,8 +7,9 @@ var ans [][]int
 
 func dfs(nums []int, path []int, used []int) {
 	if len(path) == len(nums) {
-		// fmt.Println(path)
-		ans = append(ans, path)
+		item := make([]int, len(nums))
+		copy(item, path)
+		ans = append(ans, item)
 		return
 	}
 	for i := 0; i < len(nums); i++ {
