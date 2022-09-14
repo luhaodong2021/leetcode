@@ -1,5 +1,6 @@
 package lengthoflis
 
+// 最长升序子序列
 func max(i, j int) int {
 	if i > j {
 		return i
