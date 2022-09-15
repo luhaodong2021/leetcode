@@ -24,10 +24,38 @@ func dfs(nums []int, path []int, used []int) {
 	}
 }
 
+type Node struct {
+	path []int
+	used []int
+}
+
+func bfs(node Node, nums []int) {
+	if len(node.path) == len(nums) {
+		record := make([]int, len(nums))
+		copy(record, node.path)
+		ans = append(ans, record)
+	}
+	for i := 0; i < len(nums); i++ {
+		if node.used[i] == 1 {
+			continue
+		}
+		newNode := Node{make([]int, len(node.path)), make([]int, len(nums))}
+		copy(newNode.path, node.path)
+		copy(newNode.used, node.used)
+		newNode.path = append(newNode.path, nums[i])
+		newNode.used[i] = 1
+		bfs(newNode, nums)
+	}
+}
+
 func permute(nums []int) [][]int {
+	// dfs
 	var path []int
 	used := make([]int, len(nums))
 	dfs(nums, path, used)
+	// bfs
+	newNode := Node{used: make([]int, len(nums))}
+	bfs(newNode, nums)
 	return ans
 }
 
