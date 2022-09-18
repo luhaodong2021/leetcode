@@ -1,6 +1,8 @@
 package reverselist
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val  int
@@ -12,20 +14,27 @@ func reverseList(head *ListNode) *ListNode {
 	curr := head
 	next := curr.Next
 	var prev *ListNode
-	for next != nil {
+	for {
+		curr.Next = prev
 		prev = curr
 		curr = next
+		if curr == nil {
+			break
+		}
 		next = curr.Next
-		curr.Next = prev
 	}
 
-	return curr
+	return prev
 }
 
 func Test() {
 	head := &ListNode{Val: 1}
-	head.Next = &ListNode{Val: 2}
-	head.Next.Next = &ListNode{Val: 3}
-	r := reverseList(head)
-	fmt.Println(r.Val, r.Next.Val, r.Next.Next.Val)
+	curr := head
+	for i := 2; i <= 5; i++ {
+		curr.Next = &ListNode{Val: i}
+		curr = curr.Next
+	}
+	for curr = reverseList(head); curr != nil; curr = curr.Next {
+		fmt.Println(curr.Val)
+	}
 }
