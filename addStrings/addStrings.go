@@ -14,18 +14,18 @@ func addStrings(num1 string, num2 string) string {
 	reverseIndex := len(rv) - 1
 	carry := byte(0)
 
-	var bit1, bit2 byte
+	var bit byte
 	for len(num1) > 0 || len(num2) > 0 {
-		bit1, bit2 = 0, 0
+		bit = 0
 		if len(num1) > 0 {
-			bit1 = num1[len(num1)-1] - '0'
+			bit = num1[len(num1)-1] - '0'
 			num1 = num1[:len(num1)-1]
 		}
 		if len(num2) > 0 {
-			bit2 = num2[len(num2)-1] - '0'
+			bit = bit + num2[len(num2)-1] - '0'
 			num2 = num2[:len(num2)-1]
 		}
-		bit := bit1 + bit2 + carry
+		bit := bit + carry
 		if bit < 10 {
 			carry = 0
 		} else {
