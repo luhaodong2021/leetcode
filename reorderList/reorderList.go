@@ -43,6 +43,7 @@ func reorderList(head *ListNode) *ListNode {
 		flag = !flag
 	}
 	curr.Next = nil
+
 	return dummy.Next
 }
 
