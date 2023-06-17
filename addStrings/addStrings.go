@@ -43,5 +43,5 @@ func addStrings(num1 string, num2 string) string {
 }
 
 func Test() {
-	fmt.Println(addStrings("1", "9"))
+	fmt.Println(addStrings("1", "99"))
 }
